@@ -8,4 +8,14 @@
   </div>
 </template>
 
-<script type="text/javascript" src="../scripts/MovieCard.js"></script>
+<script>
+export default {
+    name: "MovieCard",
+    props: {
+      movie: {
+        type: Object
+        // required: true
+      }
+    }
+  }
+</script>

@@ -1,20 +1,52 @@
+<!-- TEMPLATE -->
 <template>
 <div>
-      <div class="container-fluid" v-if="movies.length > 0 ">
+
+      <div class="container-fluid" v-if="movies.length > 0">
         <div class="row mt-5">
-          <MovieCard class="col-" :movie="movie" v-for="movie in movies" :key="movie.id"></MovieCard>
+          <Fade>
+          <!-- <sequential-entrance fromBottom tag="div"> -->
+              <MovieCard class="col-" :movie="movie" v-for="movie in movies" :key="movie.id"></MovieCard>
+          <!-- </sequential-entrance> -->
+          </Fade> 
       </div>
-    </div>
-    <div v-else="" class="alert alert-danger">
+    </div> 
+    
+    <div v-else class="alert alert-danger">  
       Nothing found
     </div>
+
 </div>
 </template>
 
-<script type="text/javascript" src="../scripts/MovieList.js"></script>
+ <!-- JAVASCRIPT -->
+<script>
+import { mapGetters } from "vuex";
+import MovieCard from "./../components/MovieCard.vue";
+import Fade from "./../components/Animations/Fade.vue";
 
-<style lang="sass">
-.row 
-  justify-content: space-around
-  margin: 0 
+
+export default {
+name: "MovieList",
+  computed: {
+    ...mapGetters({
+    movies:'filterMovies'
+    })
+  },
+  components: {
+    MovieCard,
+    Fade
+  }
+}
+</script>
+
+ <!-- CSS -->
+<style>
+.row div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0; 
+}
+
 </style>
